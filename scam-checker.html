@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scam Checker – PayGuard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/scam-checker.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class="fa-solid fa-shield-halved"></i>
+        Pay<span>Guard</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="fee-calculator.html">Fee Calculator</a></li>
+        <li><a href="scam-checker.html" class="active">Scam Checker</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="fee-calculator.html" class="btn btn-primary">Fee Calculator</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero page-hero-red">
+    <div class="page-hero-bg">
+      <div class="ph-shape ph-shape-r1"></div>
+      <div class="ph-shape ph-shape-r2"></div>
+    </div>
+
+    <div class="container">
+      <div class="page-hero-content">
+        <a href="index.html" class="breadcrumb">
+          <i class="fa-solid fa-chevron-left"></i> Back to Home
+        </a>
+        <div class="page-hero-badge page-hero-badge-green">
+          <i class="fa-solid fa-shield-virus"></i> Payment Scam Checker
+        </div>
+        <h1>Detect Payment Scams <span class="gradient-text-green">Before It's Too Late</span></h1>
+        <p>Paste any suspicious payment message, email, or text you've received and
+           PayGuard will instantly scan it for known scam patterns, urgency tactics,
+           and fraud indicators.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="scam-main">
+    <div class="container">
+      <div class="scam-layout">
+
+        <!-- ── LEFT: Input Panel ── -->
+        <div class="scam-panel">
+          <div class="panel-header">
+            <i class="fa-solid fa-paste" style="color:var(--success);background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.25);"></i>
+            <h2>Paste Your Message</h2>
+          </div>
+
+          <!-- Sample messages -->
+          <div class="sample-wrap">
+            <span class="sample-label">Try a sample:</span>
+            <div class="sample-btns">
+              <button class="sample-btn" data-sample="scam1">Scam Example</button>
+              <button class="sample-btn" data-sample="scam2">Phishing Example</button>
+              <button class="sample-btn" data-sample="safe1">Safe Example</button>
+            </div>
+          </div>
+
+          <!-- Textarea -->
+          <div class="textarea-wrap" id="textareaWrap">
+            <textarea
+              id="messageInput"
+              placeholder="Paste the suspicious message here…
+
+Example: 'Your account has been locked. Send $200 immediately to unlock it. This is urgent, act now or your account will be closed permanently.'"
+              rows="10"
+              spellcheck="false"
+            ></textarea>
+            <div class="textarea-footer">
+              <span class="char-count" id="charCount">0 characters</span>
+              <button class="clear-btn" id="clearBtn" title="Clear message">
+                <i class="fa-solid fa-xmark"></i> Clear
+              </button>
+            </div>
+          </div>
+
+          <!-- Options -->
+          <div class="check-options">
+            <label class="check-opt-label">Scan Sensitivity</label>
+            <div class="sensitivity-wrap">
+              <label class="sens-opt">
+                <input type="radio" name="sensitivity" value="low" />
+                <span>
+                  <strong>Low</strong>
+                  <small>Only high-risk patterns</small>
+                </span>
+              </label>
+              <label class="sens-opt">
+                <input type="radio" name="sensitivity" value="medium" checked />
+                <span>
+                  <strong>Medium</strong>
+                  <small>Balanced detection</small>
+                </span>
+              </label>
+              <label class="sens-opt">
+                <input type="radio" name="sensitivity" value="high" />
+                <span>
+                  <strong>High</strong>
+                  <small>Flag all suspicious terms</small>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <button class="btn btn-success btn-lg check-btn" id="checkBtn">
+            <i class="fa-solid fa-shield-virus"></i> Check Message
+          </button>
+
+          <!-- Privacy note -->
+          <div class="privacy-note">
+            <i class="fa-solid fa-lock"></i>
+            <p>Your message is never sent to any server. All analysis happens locally in your browser.</p>
+          </div>
+        </div>
+
+        <!-- ── RIGHT: Results Panel ── -->
+        <div class="scam-results" id="scamResults">
+
+          <!-- Empty state -->
+          <div class="sc-empty" id="scEmpty">
+            <div class="sc-empty-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3>Your Message Shield</h3>
+            <p>Paste a message on the left and click <strong>Check Message</strong>. PayGuard will analyse it for scam signals and show you a detailed risk report.</p>
+            <div class="sc-empty-features">
+              <div class="sc-feat"><i class="fa-solid fa-check"></i> 20+ scam patterns detected</div>
+              <div class="sc-feat"><i class="fa-solid fa-check"></i> Risk score with breakdown</div>
+              <div class="sc-feat"><i class="fa-solid fa-check"></i> Suspicious text highlighted</div>
+              <div class="sc-feat"><i class="fa-solid fa-check"></i> Actionable advice</div>
+            </div>
+          </div>
+
+          <!-- Results (hidden initially) -->
+          <div class="sc-result-content" id="scResultContent" style="display:none;">
+
+            <!-- Verdict banner -->
+            <div class="verdict-banner" id="verdictBanner">
+              <div class="verdict-icon" id="verdictIcon">
+                <i id="verdictIconI" class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div class="verdict-info">
+                <div class="verdict-label" id="verdictLabel">Analysing…</div>
+                <div class="verdict-title" id="verdictTitle">—</div>
+                <div class="verdict-sub" id="verdictSub">—</div>
+              </div>
+              <div class="verdict-score-wrap">
+                <svg class="score-ring" viewBox="0 0 80 80">
+                  <circle class="score-bg" cx="40" cy="40" r="34"/>
+                  <circle class="score-fill" id="scoreCircle" cx="40" cy="40" r="34"
+                    stroke-dasharray="213.6"
+                    stroke-dashoffset="213.6"
+                    transform="rotate(-90 40 40)"/>
+                </svg>
+                <div class="score-text">
+                  <span class="score-num" id="scoreNum">0</span>
+                  <span class="score-label">/ 100</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk categories -->
+            <div class="risk-categories" id="riskCategories"></div>
+
+            <!-- Highlighted message -->
+            <div class="highlighted-section">
+              <div class="hs-header">
+                <i class="fa-solid fa-highlighter"></i>
+                <h4>Analysed Message</h4>
+                <span class="hs-badge" id="hsBadge">0 flags</span>
+              </div>
+              <div class="highlighted-msg" id="highlightedMsg"></div>
+            </div>
+
+            <!-- Detected flags table -->
+            <div class="flags-section" id="flagsSection">
+              <div class="flags-header">
+                <i class="fa-solid fa-flag"></i>
+                <h4>Detected Signals</h4>
+              </div>
+              <div class="flags-list" id="flagsList"></div>
+            </div>
+
+            <!-- Safe message view -->
+            <div class="safe-tips" id="safeTips" style="display:none;">
+              <div class="safe-tips-header">
+                <i class="fa-solid fa-lightbulb"></i>
+                <h4>Stay Safe — General Tips</h4>
+              </div>
+              <ul class="safe-tips-list" id="safeTipsList"></ul>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="result-actions">
+              <button class="btn btn-outline ra-btn" id="reCheckBtn">
+                <i class="fa-solid fa-rotate-left"></i> Check Another
+              </button>
+              <button class="btn btn-outline ra-btn" id="copyReportBtn">
+                <i class="fa-solid fa-copy"></i> Copy Report
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== SCAM TYPES SECTION ===== -->
+  <section class="scam-types-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Know Your Enemy</span>
+        <h2>Common <span class="gradient-text">Payment Scam Types</span></h2>
+        <p>Recognising these patterns can help you avoid financial fraud before it happens.</p>
+      </div>
+      <div class="scam-types-grid">
+        <div class="scam-type-card">
+          <div class="st-icon st-red"><i class="fa-solid fa-bolt"></i></div>
+          <h4>Urgency Scams</h4>
+          <p>Scammers pressure you to act immediately — "Your account will be closed in 24 hours". This urgency is artificial and designed to bypass rational thinking.</p>
+          <div class="st-keywords">
+            <span>urgent</span><span>immediately</span><span>act now</span><span>24 hours</span>
+          </div>
+        </div>
+        <div class="scam-type-card">
+          <div class="st-icon st-orange"><i class="fa-solid fa-user-secret"></i></div>
+          <h4>Impersonation Scams</h4>
+          <p>Fraudsters pose as your bank, PayPal, or government agencies claiming you must verify or unlock your account by sending money or providing credentials.</p>
+          <div class="st-keywords">
+            <span>verify account</span><span>unlock</span><span>bank security</span>
+          </div>
+        </div>
+        <div class="scam-type-card">
+          <div class="st-icon st-yellow"><i class="fa-solid fa-gift"></i></div>
+          <h4>Prize & Reward Scams</h4>
+          <p>You've "won" something but must pay a fee to release it. Legitimate prizes never require upfront payment. If it sounds too good to be true — it is.</p>
+          <div class="st-keywords">
+            <span>you won</span><span>prize</span><span>reward</span><span>claim now</span>
+          </div>
+        </div>
+        <div class="scam-type-card">
+          <div class="st-icon st-blue"><i class="fa-solid fa-link"></i></div>
+          <h4>Phishing Links</h4>
+          <p>Messages containing suspicious links that lead to fake login pages designed to steal your credentials or install malware on your device.</p>
+          <div class="st-keywords">
+            <span>click here</span><span>login now</span><span>confirm details</span>
+          </div>
+        </div>
+        <div class="scam-type-card">
+          <div class="st-icon st-purple"><i class="fa-solid fa-handshake-slash"></i></div>
+          <h4>Overpayment Scams</h4>
+          <p>A "buyer" sends more than agreed and asks you to refund the difference. The original payment is fraudulent and the refund comes from your own funds.</p>
+          <div class="st-keywords">
+            <span>overpaid</span><span>refund</span><span>send back</span>
+          </div>
+        </div>
+        <div class="scam-type-card">
+          <div class="st-icon st-green"><i class="fa-solid fa-money-bill-transfer"></i></div>
+          <h4>Advance Fee Scams</h4>
+          <p>You must pay a small fee upfront to receive a much larger sum. The large sum never arrives, and the scammer disappears with your advance payment.</p>
+          <div class="st-keywords">
+            <span>advance</span><span>transfer fee</span><span>release funds</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RED FLAGS CHECKLIST ===== -->
+  <section class="checklist-section">
+    <div class="container">
+      <div class="checklist-grid">
+        <div class="checklist-content">
+          <span class="section-badge">Quick Reference</span>
+          <h2>Red Flags to <span class="gradient-text">Watch For</span></h2>
+          <p class="checklist-desc">Before you send any money internationally, run through this mental checklist. If any of these apply, stop and verify independently.</p>
+          <a href="#" class="btn btn-primary" onclick="document.getElementById('messageInput').focus();return false;">
+            <i class="fa-solid fa-shield-virus"></i> Check a Message Now
+          </a>
+        </div>
+        <div class="checklist-items">
+          <div class="cl-item cl-danger">
+            <i class="fa-solid fa-xmark"></i>
+            <div>
+              <h5>Unsolicited contact</h5>
+              <p>You didn't initiate the conversation or transaction</p>
+            </div>
+          </div>
+          <div class="cl-item cl-danger">
+            <i class="fa-solid fa-xmark"></i>
+            <div>
+              <h5>Urgency or threats</h5>
+              <p>You're pressured to act immediately or face consequences</p>
+            </div>
+          </div>
+          <div class="cl-item cl-danger">
+            <i class="fa-solid fa-xmark"></i>
+            <div>
+              <h5>Requests for gift cards or crypto</h5>
+              <p>Legitimate organisations never ask for these payment types</p>
+            </div>
+          </div>
+          <div class="cl-item cl-danger">
+            <i class="fa-solid fa-xmark"></i>
+            <div>
+              <h5>Too-good-to-be-true offers</h5>
+              <p>High returns, prizes, or lottery wins you didn't enter</p>
+            </div>
+          </div>
+          <div class="cl-item cl-warning">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+              <h5>Requests for secrecy</h5>
+              <p>"Don't tell your bank" or "keep this confidential"</p>
+            </div>
+          </div>
+          <div class="cl-item cl-warning">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+              <h5>Poor grammar or spelling</h5>
+              <p>Official communications from banks or companies are professionally written</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo footer-logo">
+            <i class="fa-solid fa-shield-halved"></i>
+            Pay<span>Guard</span>
+          </a>
+          <p>Helping you send money smarter and safer — across borders, without fear.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Tools</h4>
+          <ul>
+            <li><a href="fee-calculator.html">Fee Calculator</a></li>
+            <li><a href="scam-checker.html">Scam Checker</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#how-it-works">How It Works</a></li>
+            <li><a href="index.html#about">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 PayGuard. All rights reserved. For informational purposes only.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/scam-checker.js"></script>
+</body>
+</html>

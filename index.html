@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PayGuard – Send Money Smarter & Safer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class="fa-solid fa-shield-halved"></i>
+        Pay<span>Guard</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="fee-calculator.html">Fee Calculator</a></li>
+        <li><a href="scam-checker.html">Scam Checker</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="fee-calculator.html" class="btn btn-primary">Get Started</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="hero-container">
+      <div class="hero-badge">
+        <i class="fa-solid fa-lock"></i> Trusted International Payment Intelligence
+      </div>
+      <h1 class="hero-title">
+        Send Money <span class="gradient-text">Smarter</span><br/>
+        and <span class="gradient-text">Safer</span> Worldwide
+      </h1>
+      <p class="hero-subtitle">
+        PayGuard helps you compare cross-border payment fees, avoid hidden costs,
+        and detect payment scams — all in one place. Make every international
+        transfer with confidence.
+      </p>
+      <div class="hero-actions">
+        <a href="fee-calculator.html" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-calculator"></i> Compare Fees Now
+        </a>
+        <a href="scam-checker.html" class="btn btn-outline btn-lg">
+          <i class="fa-solid fa-shield-virus"></i> Check for Scams
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">5+</span>
+          <span class="stat-label">Payment Methods</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Countries Supported</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Free to Use</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-float card-float-1">
+        <i class="fa-solid fa-check-circle"></i>
+        <div>
+          <p class="fc-label">Best Rate Found</p>
+          <p class="fc-value">Save up to 8.5%</p>
+        </div>
+      </div>
+      <div class="hero-card-float card-float-2">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <div>
+          <p class="fc-label">Scam Alert</p>
+          <p class="fc-value">Suspicious message blocked</p>
+        </div>
+      </div>
+      <div class="hero-mockup">
+        <div class="mockup-header">
+          <div class="mockup-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="mockup-title">PayGuard Dashboard</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-row">
+            <span class="mockup-label">From</span>
+            <span class="mockup-val">🇺🇸 USD — United States</span>
+          </div>
+          <div class="mockup-row">
+            <span class="mockup-label">To</span>
+            <span class="mockup-val">🇬🇧 GBP — United Kingdom</span>
+          </div>
+          <div class="mockup-row">
+            <span class="mockup-label">Amount</span>
+            <span class="mockup-val">$1,000.00</span>
+          </div>
+          <div class="mockup-divider"></div>
+          <div class="mockup-result">
+            <div class="result-row best">
+              <i class="fa-solid fa-trophy"></i>
+              <span>Wise</span>
+              <span class="result-fee">Fee: $4.50</span>
+            </div>
+            <div class="result-row">
+              <i class="fa-brands fa-paypal"></i>
+              <span>PayPal</span>
+              <span class="result-fee">Fee: $34.99</span>
+            </div>
+            <div class="result-row">
+              <i class="fa-solid fa-building-columns"></i>
+              <span>Bank</span>
+              <span class="result-fee">Fee: $25.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST BAR ===== -->
+  <section class="trust-bar">
+    <div class="container">
+      <p class="trust-label">Compares rates from leading providers</p>
+      <div class="trust-logos">
+        <div class="trust-logo"><i class="fa-brands fa-paypal"></i> PayPal</div>
+        <div class="trust-logo"><i class="fa-solid fa-building-columns"></i> Bank Transfer</div>
+        <div class="trust-logo"><i class="fa-brands fa-bitcoin"></i> Crypto</div>
+        <div class="trust-logo"><i class="fa-solid fa-bolt"></i> Wise</div>
+        <div class="trust-logo"><i class="fa-solid fa-globe"></i> Western Union</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Our Tools</span>
+        <h2>Everything You Need for <span class="gradient-text">Safe Payments</span></h2>
+        <p>Two powerful tools designed to protect your money and maximize every dollar you send abroad.</p>
+      </div>
+      <div class="features-grid">
+
+        <!-- Feature Card 1 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrap icon-blue">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+          <div class="feature-tag">Tool 01</div>
+          <h3>Cross-Border Fee Calculator</h3>
+          <p>
+            Compare fees across Bank Transfer, PayPal, Wise, Crypto, and Western Union
+            in seconds. See estimated delivery times and instantly find the cheapest route
+            for your international transfer.
+          </p>
+          <ul class="feature-list">
+            <li><i class="fa-solid fa-check"></i> Compare 5+ payment providers</li>
+            <li><i class="fa-solid fa-check"></i> See fees, exchange rates & delivery times</li>
+            <li><i class="fa-solid fa-check"></i> Highlights the best option for you</li>
+            <li><i class="fa-solid fa-check"></i> Supports multiple currencies</li>
+          </ul>
+          <a href="fee-calculator.html" class="btn btn-primary feature-btn">
+            Try Fee Calculator <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Feature Card 2 -->
+        <div class="feature-card feature-card-alt">
+          <div class="feature-icon-wrap icon-green">
+            <i class="fa-solid fa-shield-virus"></i>
+          </div>
+          <div class="feature-tag tag-green">Tool 02</div>
+          <h3>Payment Scam Checker</h3>
+          <p>
+            Paste any suspicious payment-related message and let PayGuard scan it for
+            known scam patterns, urgency tactics, and fraud indicators. Stay protected
+            before you act.
+          </p>
+          <ul class="feature-list">
+            <li><i class="fa-solid fa-check"></i> Detects 20+ scam keywords & phrases</li>
+            <li><i class="fa-solid fa-check"></i> Risk level scoring (Low / Medium / High)</li>
+            <li><i class="fa-solid fa-check"></i> Highlights suspicious parts of the message</li>
+            <li><i class="fa-solid fa-check"></i> Instant results, no data stored</li>
+          </ul>
+          <a href="scam-checker.html" class="btn btn-success feature-btn">
+            Check a Message <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Simple Steps</span>
+        <h2>How <span class="gradient-text">PayGuard</span> Works</h2>
+        <p>Get actionable insights in under 30 seconds — no signup required.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon"><i class="fa-solid fa-hand-pointer"></i></div>
+          <h4>Choose Your Tool</h4>
+          <p>Select the Fee Calculator to compare transfer costs or the Scam Checker to verify a suspicious message.</p>
+        </div>
+        <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon"><i class="fa-solid fa-keyboard"></i></div>
+          <h4>Enter Your Details</h4>
+          <p>Input your transfer amount, currencies, and countries — or paste the message you want to verify.</p>
+        </div>
+        <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon"><i class="fa-solid fa-chart-bar"></i></div>
+          <h4>Get Instant Results</h4>
+          <p>Receive a clear comparison table or a scam risk report with highlighted warnings — instantly.</p>
+        </div>
+        <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <div class="step-icon"><i class="fa-solid fa-circle-check"></i></div>
+          <h4>Make Smart Decisions</h4>
+          <p>Use the insights to pick the most cost-effective provider or avoid a potential scam.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY PAYGUARD ===== -->
+  <section class="why-section" id="about">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-content">
+          <span class="section-badge">Why PayGuard</span>
+          <h2>Built for the Modern <span class="gradient-text">Global Sender</span></h2>
+          <p class="why-desc">
+            Millions of people send money internationally every day — and billions of dollars
+            are lost to hidden fees and payment fraud. PayGuard was built to give every
+            person the same information that financial experts have.
+          </p>
+          <div class="why-points">
+            <div class="why-point">
+              <div class="why-point-icon"><i class="fa-solid fa-lock"></i></div>
+              <div>
+                <h5>Your Privacy is Protected</h5>
+                <p>No data is sent to any server. All calculations happen in your browser.</p>
+              </div>
+            </div>
+            <div class="why-point">
+              <div class="why-point-icon"><i class="fa-solid fa-bolt"></i></div>
+              <div>
+                <h5>Instant & Always Available</h5>
+                <p>No sign-up, no loading times. Open the tool and get results immediately.</p>
+              </div>
+            </div>
+            <div class="why-point">
+              <div class="why-point-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+              <div>
+                <h5>Completely Free</h5>
+                <p>All features are 100% free — no premium tiers, no hidden costs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="why-visual">
+          <div class="why-stats-grid">
+            <div class="why-stat-card">
+              <i class="fa-solid fa-dollar-sign"></i>
+              <span class="why-stat-num">$48B+</span>
+              <span class="why-stat-label">Lost to hidden fees annually</span>
+            </div>
+            <div class="why-stat-card accent">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span class="why-stat-num">1 in 4</span>
+              <span class="why-stat-label">People receive payment scam messages</span>
+            </div>
+            <div class="why-stat-card">
+              <i class="fa-solid fa-earth-americas"></i>
+              <span class="why-stat-num">200+</span>
+              <span class="why-stat-label">Million international transfers per day</span>
+            </div>
+            <div class="why-stat-card accent-green">
+              <i class="fa-solid fa-piggy-bank"></i>
+              <span class="why-stat-num">Up to 90%</span>
+              <span class="why-stat-label">Savings possible vs. bank transfers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER ===== -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Send Money <span class="gradient-text">the Smart Way?</span></h2>
+        <p>Use our free tools right now — no account needed.</p>
+        <div class="cta-actions">
+          <a href="fee-calculator.html" class="btn btn-white btn-lg">
+            <i class="fa-solid fa-calculator"></i> Fee Calculator
+          </a>
+          <a href="scam-checker.html" class="btn btn-outline-white btn-lg">
+            <i class="fa-solid fa-shield-virus"></i> Scam Checker
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo footer-logo">
+            <i class="fa-solid fa-shield-halved"></i>
+            Pay<span>Guard</span>
+          </a>
+          <p>Helping you send money smarter and safer — across borders, without fear.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Tools</h4>
+          <ul>
+            <li><a href="fee-calculator.html">Fee Calculator</a></li>
+            <li><a href="scam-checker.html">Scam Checker</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 PayGuard. All rights reserved. For informational purposes only.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
