@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exchange Tracker – PayGuard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/exchange-tracker.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class="fa-solid fa-shield-halved"></i>
+        Pay<span>Guard</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="fee-calculator.html">Fee Calculator</a></li>
+        <li><a href="scam-checker.html">Scam Checker</a></li>
+        <li><a href="exchange-tracker.html" class="active">Exchange Tracker</a></li>
+        <li><a href="tax-invoice-helper.html">Tax & Invoice</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tax-invoice-helper.html" class="btn btn-primary">Tax Helper</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="page-hero page-hero-tracker">
+    <div class="page-hero-bg">
+      <div class="ph-shape ph-shape-r1"></div>
+      <div class="ph-shape ph-shape-r2"></div>
+    </div>
+    <div class="container">
+      <div class="page-hero-content">
+        <a href="index.html" class="breadcrumb">
+          <i class="fa-solid fa-chevron-left"></i> Back to Home
+        </a>
+        <h1>Track Rates, Set Targets, and <span class="gradient-text">Time Transfers Better</span></h1>
+      </div>
+    </div>
+  </section>
+
+  <main class="tracker-main">
+    <div class="container">
+      <div class="tracker-layout">
+
+        <section class="tracker-panel">
+          <div class="panel-header">
+            <i class="fa-solid fa-sliders"></i>
+            <h2>Rate Settings</h2>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="trackerFrom">From Country</label>
+              <div class="select-wrap">
+                <select id="trackerFrom">
+                  <option value="US">🇺🇸 United States (USD)</option>
+                  <option value="GB">🇬🇧 United Kingdom (GBP)</option>
+                  <option value="EU">🇪🇺 Eurozone (EUR)</option>
+                  <option value="CA">🇨🇦 Canada (CAD)</option>
+                  <option value="AU">🇦🇺 Australia (AUD)</option>
+                  <option value="JP">🇯🇵 Japan (JPY)</option>
+                  <option value="IN">🇮🇳 India (INR)</option>
+                  <option value="SG">🇸🇬 Singapore (SGD)</option>
+                  <option value="AE">🇦🇪 UAE (AED)</option>
+                  <option value="CH">🇨🇭 Switzerland (CHF)</option>
+                  <option value="NG">🇳🇬 Nigeria (NGN)</option>
+                  <option value="BR">🇧🇷 Brazil (BRL)</option>
+                  <option value="MX">🇲🇽 Mexico (MXN)</option>
+                  <option value="PH">🇵🇭 Philippines (PHP)</option>
+                  <option value="PK">🇵🇰 Pakistan (PKR)</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-arrow"></i>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="trackerTo">To Country</label>
+              <div class="select-wrap">
+                <select id="trackerTo">
+                  <option value="US">🇺🇸 United States (USD)</option>
+                  <option value="GB" selected>🇬🇧 United Kingdom (GBP)</option>
+                  <option value="EU">🇪🇺 Eurozone (EUR)</option>
+                  <option value="CA">🇨🇦 Canada (CAD)</option>
+                  <option value="AU">🇦🇺 Australia (AUD)</option>
+                  <option value="JP">🇯🇵 Japan (JPY)</option>
+                  <option value="IN">🇮🇳 India (INR)</option>
+                  <option value="SG">🇸🇬 Singapore (SGD)</option>
+                  <option value="AE">🇦🇪 UAE (AED)</option>
+                  <option value="CH">🇨🇭 Switzerland (CHF)</option>
+                  <option value="NG">🇳🇬 Nigeria (NGN)</option>
+                  <option value="BR">🇧🇷 Brazil (BRL)</option>
+                  <option value="MX">🇲🇽 Mexico (MXN)</option>
+                  <option value="PH">🇵🇭 Philippines (PHP)</option>
+                  <option value="PK">🇵🇰 Pakistan (PKR)</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-arrow"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="sendAmount">Transfer Amount</label>
+            <input type="number" id="sendAmount" min="1" step="1" value="1000" class="text-input" />
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-primary btn-lg" id="refreshBtn">
+              <i class="fa-solid fa-rotate"></i> Refresh Snapshot
+            </button>
+          </div>
+
+          <div class="alert-box" id="alertBox"></div>
+
+          <div class="target-rate-card target-rate-inline">
+            <div class="target-rate-head">
+              <h3><i class="fa-solid fa-bullseye"></i> Target Exchange Rate</h3>
+              <span class="chart-chip">Used by Set Alert</span>
+            </div>
+            <div class="target-rate-grid">
+              <div class="form-group">
+                <label for="targetRate">Target Rate Value</label>
+                <input type="number" id="targetRate" min="0.0001" step="0.0001" value="0.8500" class="text-input" />
+                <p class="helper-text">Set a minimum rate you want to reach before sending money.</p>
+                <p class="helper-text" id="targetMeaning">Example: if current rate is 1 USD = 0.84 GBP, set 0.86 to alert when the rate improves.</p>
+              </div>
+            </div>
+            <div class="target-rate-actions">
+              <button class="btn btn-outline btn-lg" id="setAlertBtn">
+                <i class="fa-solid fa-bell"></i> Set Alert
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="tracker-results">
+          <div class="results-card">
+            <div class="results-card-head">
+              <div>
+                <span class="section-badge">Live Snapshot</span>
+                <h2 id="pairTitle">USD to GBP</h2>
+              </div>
+              <div class="last-updated" id="lastUpdated">Updated just now</div>
+            </div>
+
+            <div class="refresh-timer-bar">
+              <i class="fa-solid fa-clock"></i>
+              <span>Next auto refresh in <strong id="nextRefresh">--:--</strong></span>
+            </div>
+
+            <div class="metric-grid">
+              <div class="metric-card">
+                <span class="metric-label">Current rate</span>
+                <strong class="metric-value" id="currentRate">—</strong>
+                <small id="rateDirection">Trend loading...</small>
+              </div>
+              <div class="metric-card">
+                <span class="metric-label">Target hit</span>
+                <strong class="metric-value" id="targetStatus">—</strong>
+                <small id="targetGap">Set a target to track it</small>
+              </div>
+              <div class="metric-card">
+                <span class="metric-label">Best time</span>
+                <strong class="metric-value" id="bestTime">—</strong>
+                <small id="bestTimeNote">Based on live market snapshots</small>
+              </div>
+              <div class="metric-card">
+                <span class="metric-label">Potential value</span>
+                <strong class="metric-value" id="receiveEstimate">—</strong>
+                <small>Estimated amount received</small>
+              </div>
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-head">
+                <h3>7-Day Trend</h3>
+                <span class="chart-chip" id="trendChip">Connecting to live API...</span>
+              </div>
+              <div class="sparkline-wrap">
+                <svg id="trendSvg" viewBox="0 0 600 220" preserveAspectRatio="none" aria-label="Exchange rate trend chart"></svg>
+              </div>
+              <div class="chart-foot" id="chartFoot"></div>
+            </div>
+
+            <div class="insight-grid">
+              <div class="insight-card">
+                <h3><i class="fa-solid fa-bolt"></i> Best Time to Transfer</h3>
+                <p id="bestTransferCopy">Run a snapshot to see whether you should send now or wait.</p>
+              </div>
+              <div class="insight-card">
+                <h3><i class="fa-solid fa-triangle-exclamation"></i> Rate Alert</h3>
+                <p id="alertCopy">Set a target rate and refresh to see if it has crossed your threshold.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo footer-logo">
+            <i class="fa-solid fa-shield-halved"></i>
+            Pay<span>Guard</span>
+          </a>
+          <p>Helping you send money smarter and safer — across borders, without fear.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Tools</h4>
+          <ul>
+            <li><a href="fee-calculator.html">Fee Calculator</a></li>
+            <li><a href="scam-checker.html">Scam Checker</a></li>
+            <li><a href="exchange-tracker.html">Exchange Tracker</a></li>
+            <li><a href="tax-invoice-helper.html">Tax & Invoice Helper</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 PayGuard. All rights reserved. For informational purposes only.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/exchange-tracker.js"></script>
+</body>
+</html>

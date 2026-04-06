@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tax & Invoice Helper – PayGuard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/tax-invoice.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class="fa-solid fa-shield-halved"></i>
+        Pay<span>Guard</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="fee-calculator.html">Fee Calculator</a></li>
+        <li><a href="scam-checker.html">Scam Checker</a></li>
+        <li><a href="exchange-tracker.html">Exchange Tracker</a></li>
+        <li><a href="tax-invoice-helper.html" class="active">Tax & Invoice</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="exchange-tracker.html" class="btn btn-primary">Rate Tracker</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="page-hero page-hero-tax">
+    <div class="page-hero-bg">
+      <div class="ph-shape ph-shape-r1"></div>
+      <div class="ph-shape ph-shape-r2"></div>
+    </div>
+    <div class="container">
+      <div class="page-hero-content">
+        <a href="index.html" class="breadcrumb">
+          <i class="fa-solid fa-chevron-left"></i> Back to Home
+        </a>
+        <div class="page-hero-badge page-hero-badge-gold">
+          <i class="fa-solid fa-file-invoice-dollar"></i> Tax & Invoice Helper
+        </div>
+        <h1>Create Invoices and <span class="gradient-text">Estimate Tax Faster</span></h1>
+        <p>Generate a simple invoice, categorize expenses, estimate GST/VAT, and keep the right documents in one place.</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="tax-main">
+    <div class="container">
+      <div class="tax-layout">
+
+        <section class="tax-panel">
+          <div class="panel-header">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <h2>Invoice Builder</h2>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="businessName">Business Name</label>
+              <input type="text" id="businessName" class="text-input" value="PayGuard Studio" />
+            </div>
+            <div class="form-group">
+              <label for="clientName">Client Name</label>
+              <input type="text" id="clientName" class="text-input" value="Acme Ventures" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="invoiceNumber">Invoice Number</label>
+              <input type="text" id="invoiceNumber" class="text-input" value="INV-2026-001" />
+            </div>
+            <div class="form-group">
+              <label for="invoiceDate">Invoice Date</label>
+              <input type="date" id="invoiceDate" class="text-input" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="currencySelect">Currency</label>
+              <div class="select-wrap">
+                <select id="currencySelect">
+                  <option value="USD" selected>USD - US Dollar</option>
+                  <option value="GBP">GBP - British Pound</option>
+                  <option value="EUR">EUR - Euro</option>
+                  <option value="CAD">CAD - Canadian Dollar</option>
+                  <option value="AUD">AUD - Australian Dollar</option>
+                  <option value="INR">INR - Indian Rupee</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-arrow"></i>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="taxRate">GST / VAT Rate (%)</label>
+              <input type="number" id="taxRate" class="text-input" min="0" step="0.1" value="7.5" />
+            </div>
+          </div>
+
+          <div class="items-section">
+            <div class="section-head-inline">
+              <h3>Invoice Items</h3>
+              <button class="btn btn-outline" id="addItemBtn"><i class="fa-solid fa-plus"></i> Add Item</button>
+            </div>
+            <div class="items-table-wrap">
+              <table class="items-table" id="itemsTable">
+                <thead>
+                  <tr>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-primary btn-lg" id="updateInvoiceBtn">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Update Invoice
+            </button>
+            <button class="btn btn-outline btn-lg" id="resetInvoiceBtn">
+              <i class="fa-solid fa-rotate-left"></i> Reset Sample
+            </button>
+          </div>
+        </section>
+
+        <section class="tax-preview">
+          <div class="preview-card">
+            <div class="preview-top">
+              <div>
+                <span class="section-badge">Live Preview</span>
+                <h2 id="previewBusiness">PayGuard Studio</h2>
+              </div>
+              <div class="preview-number" id="previewNumber">INV-2026-001</div>
+            </div>
+
+            <div class="invoice-meta-grid">
+              <div>
+                <span>Bill To</span>
+                <strong id="previewClient">Acme Ventures</strong>
+              </div>
+              <div>
+                <span>Date</span>
+                <strong id="previewDate">—</strong>
+              </div>
+              <div>
+                <span>Currency</span>
+                <strong id="previewCurrency">USD</strong>
+              </div>
+              <div>
+                <span>Tax Rate</span>
+                <strong id="previewTaxRate">7.5%</strong>
+              </div>
+            </div>
+
+            <div class="preview-items" id="previewItems"></div>
+
+            <div class="preview-totals">
+              <div><span>Subtotal</span><strong id="subtotalValue">$0.00</strong></div>
+              <div><span>Tax</span><strong id="taxValue">$0.00</strong></div>
+              <div class="total-line"><span>Total Due</span><strong id="totalValue">$0.00</strong></div>
+            </div>
+          </div>
+
+          <div class="helper-grid">
+            <div class="helper-card">
+              <div class="helper-head"><i class="fa-solid fa-tags"></i><h3>Expense Categorizer</h3></div>
+              <textarea id="expenseInput" class="text-area" rows="6" placeholder="Paste expenses, one per line. Example: hotel, software subscription, ad spend"></textarea>
+              <div class="expense-actions">
+                <button class="btn btn-primary" id="categorizeBtn"><i class="fa-solid fa-list-check"></i> Categorize</button>
+              </div>
+              <div id="expenseResults" class="expense-results"></div>
+            </div>
+
+            <div class="helper-card">
+              <div class="helper-head"><i class="fa-solid fa-folder-open"></i><h3>Documents Checklist</h3></div>
+              <ul class="doc-list" id="docList"></ul>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo footer-logo">
+            <i class="fa-solid fa-shield-halved"></i>
+            Pay<span>Guard</span>
+          </a>
+          <p>Helping you send money smarter and safer — across borders, without fear.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Tools</h4>
+          <ul>
+            <li><a href="fee-calculator.html">Fee Calculator</a></li>
+            <li><a href="scam-checker.html">Scam Checker</a></li>
+            <li><a href="exchange-tracker.html">Exchange Tracker</a></li>
+            <li><a href="tax-invoice-helper.html">Tax & Invoice Helper</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 PayGuard. All rights reserved. For informational purposes only.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/tax-invoice-helper.js"></script>
+</body>
+</html>
