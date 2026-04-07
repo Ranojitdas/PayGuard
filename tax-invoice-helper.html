@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="css/tax-invoice.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.4/dist/jspdf.plugin.autotable.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js" defer></script>
 </head>
 <body>
 
@@ -75,6 +78,17 @@
 
           <div class="form-row">
             <div class="form-group">
+              <label for="businessAddress">Business Address</label>
+              <input type="text" id="businessAddress" class="text-input" value="48 Market Street, Singapore" />
+            </div>
+            <div class="form-group">
+              <label for="taxId">Tax ID / GST No.</label>
+              <input type="text" id="taxId" class="text-input" value="GST-2026-8891" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
               <label for="invoiceNumber">Invoice Number</label>
               <input type="text" id="invoiceNumber" class="text-input" value="INV-2026-001" />
             </div>
@@ -130,6 +144,12 @@
             <button class="btn btn-primary btn-lg" id="updateInvoiceBtn">
               <i class="fa-solid fa-wand-magic-sparkles"></i> Update Invoice
             </button>
+            <button class="btn btn-success btn-lg" id="downloadPdfBtn">
+              <i class="fa-solid fa-file-pdf"></i> Download PDF
+            </button>
+            <button class="btn btn-outline btn-lg" id="downloadWordBtn">
+              <i class="fa-solid fa-file-word"></i> Download Word
+            </button>
             <button class="btn btn-outline btn-lg" id="resetInvoiceBtn">
               <i class="fa-solid fa-rotate-left"></i> Reset Sample
             </button>
@@ -155,6 +175,10 @@
                 <span>Date</span>
                 <strong id="previewDate">—</strong>
               </div>
+                <div>
+                  <span>Due Date</span>
+                  <strong id="previewDueDate">—</strong>
+                </div>
               <div>
                 <span>Currency</span>
                 <strong id="previewCurrency">USD</strong>
@@ -163,6 +187,14 @@
                 <span>Tax Rate</span>
                 <strong id="previewTaxRate">7.5%</strong>
               </div>
+                <div>
+                  <span>Tax ID</span>
+                  <strong id="previewTaxId">GST-2026-8891</strong>
+                </div>
+                <div class="meta-wide">
+                  <span>Business Address</span>
+                  <strong id="previewAddress">48 Market Street, Singapore</strong>
+                </div>
             </div>
 
             <div class="preview-items" id="previewItems"></div>
@@ -235,7 +267,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
-  <script src="js/tax-invoice-helper.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/tax-invoice-helper.js" defer></script>
 </body>
 </html>

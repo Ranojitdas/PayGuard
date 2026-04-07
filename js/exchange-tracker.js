@@ -26,6 +26,14 @@ const targetRateInput = document.getElementById('targetRate');
 const sendAmountInput = document.getElementById('sendAmount');
 const refreshBtn = document.getElementById('refreshBtn');
 const setAlertBtn = document.getElementById('setAlertBtn');
+const alertModal = document.getElementById('alertModal');
+const alertModalBackdrop = document.getElementById('alertModalBackdrop');
+const closeAlertModalBtn = document.getElementById('closeAlertModal');
+const cancelAlertModalBtn = document.getElementById('cancelAlertModal');
+const saveAlertModalBtn = document.getElementById('saveAlertModal');
+const alertEmailInput = document.getElementById('alertEmail');
+const alertLabelInput = document.getElementById('alertLabel');
+const alertModalSummary = document.getElementById('alertModalSummary');
 const targetMeaning = document.getElementById('targetMeaning');
 const alertBox = document.getElementById('alertBox');
 const pairTitle = document.getElementById('pairTitle');
@@ -49,6 +57,7 @@ let refreshIntervalId = null;
 let countdownIntervalId = null;
 let latestRequestId = 0;
 let nextRefreshAt = Date.now();
+let savedAlertConfig = null;
 
 const API_BASE = 'https://api.frankfurter.app';
 const AUTO_REFRESH_MS = 2 * 60 * 1000;
@@ -98,6 +107,75 @@ function toIsoDate(date) {
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
+}
+
+function getCurrentPairLabel() {
+  const from = TRACKER_COUNTRIES[trackerFrom.value];
+  const to = TRACKER_COUNTRIES[trackerTo.value];
+  return from && to ? `${from.currency} → ${to.currency}` : 'selected pair';
+}
+
+function renderAlertModalSummary() {
+  const targetRate = parseFloat(targetRateInput.value) || 0;
+  const amount = parseFloat(sendAmountInput.value) || 0;
+  alertModalSummary.innerHTML = `
+    <strong>Alert preview</strong><br />
+    Pair: ${getCurrentPairLabel()}<br />
+    Target rate: ${targetRate.toFixed(4)}<br />
+    Amount: ${amount.toLocaleString('en-US')}<br />
+    This will be saved locally only. No email API is attached yet.
+  `;
+}
+
+function openAlertModal() {
+  renderAlertModalSummary();
+  alertModal.classList.add('open');
+  alertModal.setAttribute('aria-hidden', 'false');
+  const pairLabel = getCurrentPairLabel();
+  alertLabelInput.value = alertLabelInput.value || `${pairLabel} watchlist`;
+  setTimeout(() => alertEmailInput.focus(), 50);
+}
+
+function closeAlertModal() {
+  alertModal.classList.remove('open');
+  alertModal.setAttribute('aria-hidden', 'true');
+}
+
+function getSavedAlertMessage() {
+  if (!savedAlertConfig) return 'Set a target rate and open the alert dialog to save your email for a local watchlist.';
+  return `Alert saved for ${savedAlertConfig.email} on ${savedAlertConfig.pair} at ${savedAlertConfig.targetRate.toFixed(4)}. No email API is attached yet, so this is a local setup only.`;
+}
+
+function saveAlertConfig() {
+  const email = alertEmailInput.value.trim();
+  const label = alertLabelInput.value.trim() || `${getCurrentPairLabel()} watchlist`;
+  const targetRate = parseFloat(targetRateInput.value) || 0;
+
+  if (!email || !email.includes('@')) {
+    alertModalSummary.innerHTML = 'Please enter a valid email address before saving.';
+    alertEmailInput.focus();
+    return;
+  }
+
+  savedAlertConfig = {
+    email,
+    label,
+    pair: getCurrentPairLabel(),
+    targetRate,
+    savedAt: new Date().toISOString(),
+  };
+
+  try {
+    localStorage.setItem('payguard.exchangeAlert', JSON.stringify(savedAlertConfig));
+  } catch (error) {
+    console.warn('Unable to persist alert settings locally.', error);
+  }
+
+  persistedAlert = true;
+  alertCopy.textContent = getSavedAlertMessage();
+  alertBox.style.display = 'block';
+  alertBox.textContent = `Alert saved for ${email}. This is a local-only setup for now; email delivery is not connected yet.`;
+  closeAlertModal();
 }
 
 async function fetchCurrentRate(fromCurrency, toCurrency) {
@@ -301,7 +379,9 @@ async function updateTracker(options = {}) {
   } else {
     alertBox.style.display = 'none';
     alertBox.textContent = '';
-    alertCopy.textContent = `The current rate is still below ${target.toFixed(4)}. Keep watching for a better window.`;
+    alertCopy.textContent = savedAlertConfig
+      ? getSavedAlertMessage()
+      : `The current rate is still below ${target.toFixed(4)}. Keep watching for a better window.`;
   }
 
   renderTrend(trend);
@@ -329,9 +409,14 @@ async function updateTracker(options = {}) {
 }
 
 refreshBtn.addEventListener('click', updateTracker);
-setAlertBtn.addEventListener('click', () => {
-  persistedAlert = true;
-  updateTracker();
+setAlertBtn.addEventListener('click', openAlertModal);
+closeAlertModalBtn.addEventListener('click', closeAlertModal);
+cancelAlertModalBtn.addEventListener('click', closeAlertModal);
+saveAlertModalBtn.addEventListener('click', saveAlertConfig);
+alertModalBackdrop.addEventListener('click', closeAlertModal);
+
+alertModal.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeAlertModal();
 });
 
 trackerFrom.addEventListener('change', updateTracker);
@@ -340,6 +425,23 @@ targetRateInput.addEventListener('input', () => {
   if (persistedAlert) updateTracker();
 });
 sendAmountInput.addEventListener('input', updateTracker);
+targetRateInput.addEventListener('input', renderAlertModalSummary);
+trackerFrom.addEventListener('change', renderAlertModalSummary);
+trackerTo.addEventListener('change', renderAlertModalSummary);
+sendAmountInput.addEventListener('input', renderAlertModalSummary);
+
+try {
+  const storedAlert = localStorage.getItem('payguard.exchangeAlert');
+  if (storedAlert) {
+    savedAlertConfig = JSON.parse(storedAlert);
+    persistedAlert = true;
+    if (savedAlertConfig.email) alertEmailInput.value = savedAlertConfig.email;
+    if (savedAlertConfig.label) alertLabelInput.value = savedAlertConfig.label;
+    alertCopy.textContent = getSavedAlertMessage();
+  }
+} catch (error) {
+  console.warn('Unable to load stored alert settings.', error);
+}
 
 if (refreshIntervalId) clearInterval(refreshIntervalId);
 refreshIntervalId = setInterval(() => {

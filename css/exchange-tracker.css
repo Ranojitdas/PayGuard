@@ -401,6 +401,108 @@
   margin-top: 14px;
 }
 
+.alert-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 70;
+}
+
+.alert-modal.open {
+  display: flex;
+}
+
+.alert-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.alert-modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 560px);
+  max-height: min(90vh, 760px);
+  overflow: auto;
+  padding: 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: linear-gradient(180deg, rgba(17,24,39,0.98), rgba(15,23,42,0.98));
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+}
+
+.alert-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.alert-modal-head h3 {
+  margin-top: 10px;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+}
+
+.alert-modal-close {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.alert-modal-copy {
+  margin: 14px 0 18px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.alert-modal-summary {
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(6,182,212,0.18);
+  background: linear-gradient(180deg, rgba(6,182,212,0.10), rgba(255,255,255,0.03));
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+
+.alert-modal-form {
+  display: grid;
+  gap: 14px;
+}
+
+.alert-modal-form .form-group {
+  display: grid;
+  gap: 8px;
+}
+
+.alert-modal-form label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.alert-modal-note {
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.alert-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
 @media (max-width: 980px) {
   .tracker-layout {
     grid-template-columns: 1fr;
@@ -419,5 +521,21 @@
   .metric-grid,
   .insight-grid {
     grid-template-columns: 1fr;
+  }
+
+  .alert-modal {
+    padding: 14px;
+  }
+
+  .alert-modal-panel {
+    padding: 18px;
+  }
+
+  .alert-modal-actions {
+    flex-direction: column;
+  }
+
+  .alert-modal-actions .btn {
+    width: 100%;
   }
 }

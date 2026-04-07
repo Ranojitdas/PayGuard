@@ -207,6 +207,47 @@
     </div>
   </main>
 
+  <div class="alert-modal" id="alertModal" aria-hidden="true">
+    <div class="alert-modal-backdrop" id="alertModalBackdrop"></div>
+    <div class="alert-modal-panel" role="dialog" aria-modal="true" aria-labelledby="alertModalTitle">
+      <div class="alert-modal-head">
+        <div>
+          <span class="section-badge">Alert Setup</span>
+          <h3 id="alertModalTitle">Set email alert</h3>
+        </div>
+        <button class="alert-modal-close" type="button" id="closeAlertModal" aria-label="Close alert dialog">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <p class="alert-modal-copy">
+        Enter the email where you want the alert sent. The tracker will save this setup locally for now.
+      </p>
+
+      <div class="alert-modal-summary" id="alertModalSummary"></div>
+
+      <div class="alert-modal-form">
+        <div class="form-group">
+          <label for="alertEmail">Email address</label>
+          <input type="email" id="alertEmail" class="text-input" placeholder="name@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="alertLabel">Alert label</label>
+          <input type="text" id="alertLabel" class="text-input" placeholder="USD to GBP watchlist" />
+        </div>
+      </div>
+
+      <p class="alert-modal-note">
+        No email API is attached yet, so this does not send real emails. It only stores the alert details in the browser and updates the tracker status.
+      </p>
+
+      <div class="alert-modal-actions">
+        <button class="btn btn-outline" type="button" id="cancelAlertModal">Cancel</button>
+        <button class="btn btn-primary" type="button" id="saveAlertModal">Save Alert</button>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
