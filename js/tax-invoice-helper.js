@@ -122,6 +122,15 @@ function slugifyFileName(value) {
     .replace(/^-+|-+$/g, '');
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function getInvoiceFileBase(data) {
   return `${slugifyFileName(data.invoiceNumber || 'invoice')}-${slugifyFileName(data.clientName || 'client')}`;
 }
@@ -455,21 +464,49 @@ function updateInvoice() {
 function classifyExpenses() {
   const lines = expenseInput.value.split('\n').map(line => line.trim()).filter(Boolean);
   if (!lines.length) {
-    expenseResults.innerHTML = '<div class="expense-result"><span>Paste one expense per line to classify it.</span></div>';
+    expenseResults.innerHTML = `
+      <div class="expense-empty">
+        <strong>How it works:</strong> paste one expense per line, then PayGuard scans each line for keywords and suggests a likely category.
+        Try items like hotel, software subscription, ad spend, or bank fee.
+      </div>
+    `;
     return;
   }
 
-  expenseResults.innerHTML = lines.map(line => {
+  const matches = lines.map(line => {
     const normalized = line.toLowerCase();
     const match = expenseRules.find(rule => rule.keywords.some(keyword => normalized.includes(keyword)));
     const category = match ? match.category : 'General';
-    return `
+    const keyword = match ? match.keywords.find(item => normalized.includes(item)) : null;
+    return { line, category, keyword };
+  });
+
+  const categoryCounts = matches.reduce((counts, item) => {
+    counts[item.category] = (counts[item.category] || 0) + 1;
+    return counts;
+  }, {});
+
+  const summaryChips = Object.entries(categoryCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([category, count]) => `<span class="summary-chip">${escapeHtml(category)}: ${count}</span>`)
+    .join('');
+
+  expenseResults.innerHTML = `
+    <div class="expense-summary">
+      <strong>${matches.length} items scanned</strong>
+      <span>Keyword-based suggestions, not a tax filing rule engine.</span>
+      ${summaryChips}
+    </div>
+    ${matches.map(item => `
       <div class="expense-result">
-        <span>${line}</span>
-        <strong>${category}</strong>
+        <div class="expense-result-main">
+          <span class="expense-result-label">${escapeHtml(item.line)}</span>
+          <span class="expense-result-note">${item.keyword ? `Matched keyword: ${escapeHtml(item.keyword)}` : 'No keyword matched, so this was labeled General.'}</span>
+        </div>
+        <strong class="expense-result-badge">${escapeHtml(item.category)}</strong>
       </div>
-    `;
-  }).join('');
+    `).join('')}
+  `;
 }
 
 function renderChecklist() {

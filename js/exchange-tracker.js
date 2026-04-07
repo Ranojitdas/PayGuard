@@ -33,7 +33,6 @@ const cancelAlertModalBtn = document.getElementById('cancelAlertModal');
 const saveAlertModalBtn = document.getElementById('saveAlertModal');
 const alertEmailInput = document.getElementById('alertEmail');
 const alertLabelInput = document.getElementById('alertLabel');
-const alertModalSummary = document.getElementById('alertModalSummary');
 const targetMeaning = document.getElementById('targetMeaning');
 const alertBox = document.getElementById('alertBox');
 const pairTitle = document.getElementById('pairTitle');
@@ -115,20 +114,7 @@ function getCurrentPairLabel() {
   return from && to ? `${from.currency} → ${to.currency}` : 'selected pair';
 }
 
-function renderAlertModalSummary() {
-  const targetRate = parseFloat(targetRateInput.value) || 0;
-  const amount = parseFloat(sendAmountInput.value) || 0;
-  alertModalSummary.innerHTML = `
-    <strong>Alert preview</strong><br />
-    Pair: ${getCurrentPairLabel()}<br />
-    Target rate: ${targetRate.toFixed(4)}<br />
-    Amount: ${amount.toLocaleString('en-US')}<br />
-    This will be saved locally only. No email API is attached yet.
-  `;
-}
-
 function openAlertModal() {
-  renderAlertModalSummary();
   alertModal.classList.add('open');
   alertModal.setAttribute('aria-hidden', 'false');
   const pairLabel = getCurrentPairLabel();
@@ -152,7 +138,7 @@ function saveAlertConfig() {
   const targetRate = parseFloat(targetRateInput.value) || 0;
 
   if (!email || !email.includes('@')) {
-    alertModalSummary.innerHTML = 'Please enter a valid email address before saving.';
+    window.alert('Please enter a valid email address before saving.');
     alertEmailInput.focus();
     return;
   }
@@ -425,10 +411,6 @@ targetRateInput.addEventListener('input', () => {
   if (persistedAlert) updateTracker();
 });
 sendAmountInput.addEventListener('input', updateTracker);
-targetRateInput.addEventListener('input', renderAlertModalSummary);
-trackerFrom.addEventListener('change', renderAlertModalSummary);
-trackerTo.addEventListener('change', renderAlertModalSummary);
-sendAmountInput.addEventListener('input', renderAlertModalSummary);
 
 try {
   const storedAlert = localStorage.getItem('payguard.exchangeAlert');

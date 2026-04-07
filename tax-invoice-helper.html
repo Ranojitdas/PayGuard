@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tax & Invoice Helper – PayGuard</title>
+  <title>Tax & Invoice – PayGuard</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/tax-invoice.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -46,9 +46,6 @@
         <a href="index.html" class="breadcrumb">
           <i class="fa-solid fa-chevron-left"></i> Back to Home
         </a>
-        <div class="page-hero-badge page-hero-badge-gold">
-          <i class="fa-solid fa-file-invoice-dollar"></i> Tax & Invoice Helper
-        </div>
         <h1>Create Invoices and <span class="gradient-text">Estimate Tax Faster</span></h1>
         <p>Generate a simple invoice, categorize expenses, estimate GST/VAT, and keep the right documents in one place.</p>
       </div>
@@ -209,7 +206,8 @@
           <div class="helper-grid">
             <div class="helper-card">
               <div class="helper-head"><i class="fa-solid fa-tags"></i><h3>Expense Categorizer</h3></div>
-              <textarea id="expenseInput" class="text-area" rows="6" placeholder="Paste expenses, one per line. Example: hotel, software subscription, ad spend"></textarea>
+              <p class="helper-copy">Paste one expense per line and PayGuard will group each item into a rough tax/accounting category using keyword matching.</p>
+              <textarea id="expenseInput" class="text-area" rows="6" placeholder="hotel&#10;software subscription&#10;ad spend&#10;bank fee"></textarea>
               <div class="expense-actions">
                 <button class="btn btn-primary" id="categorizeBtn"><i class="fa-solid fa-list-check"></i> Categorize</button>
               </div>
